@@ -1,7 +1,6 @@
 package TDB2024II.MsSecurity.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -36,36 +35,18 @@ public class UsuarioController {
     }
 
     //findById
-
     //update
-
-    //eliminar
+    //delete
 
     @GetMapping("/findById/{id}")
     public UsuarioModel findById(@PathVariable Integer id) {
         return usuarioService.findById(id);
     }
 
-    /* 
-    @PutMapping("/update/{id}")
-    public UsuarioModel update(@PathVariable Integer id, @RequestBody UsuarioModel model) {
-        model.set(id); // Asigna el ID al modelo para actualizar el usuario correspondiente
-        return usuarioService.update(model);
-    }*/
-    @PutMapping("/update/{id}")
-    public UsuarioModel update(@PathVariable Integer id, @RequestBody UsuarioModel newModelData) {
-        UsuarioModel existingUser = usuarioService.findById(id);
-        
-        if (id == existingUser.idUsuario) {
-            UsuarioModel userToUpdate = existingUser;
-
-            return usuarioService.update(userToUpdate); // Guarda y retorna el usuario actualizado
-        } else {
-            // Manejo de error, por ejemplo lanzando una excepción o retornando un error
-            throw new RuntimeException("Usuario no encontrado con id: " + id);
-        }
+    @PutMapping("/update")
+    public UsuarioModel update(@RequestBody UsuarioModel model){
+    return usuarioService.update(model);
     }
-
 
     @DeleteMapping("/delete/{id}")
     public String delete(@PathVariable Integer id) {
@@ -86,4 +67,27 @@ public class UsuarioController {
         cerrar conexion
      }
      */
+
+         /* 
+    @PutMapping("/update/{id}")
+    public UsuarioModel update(@PathVariable Integer id, @RequestBody UsuarioModel newModelData) {
+        UsuarioModel existingUser = usuarioService.findById(id);
+        
+        if (id == existingUser.idUsuario) {
+            UsuarioModel userToUpdate = existingUser;
+
+            return usuarioService.update(userToUpdate); // Guarda y retorna el usuario actualizado
+        } else {
+            // Manejo de error, por ejemplo lanzando una excepción o retornando un error
+            throw new RuntimeException("Usuario no encontrado con id: " + id);
+        }
+    }*/
+
+    
+    /* 
+    @PutMapping("/update/{id}")
+    public UsuarioModel update(@PathVariable Integer id, @RequestBody UsuarioModel model) {
+        model.set(id); // Asigna el ID al modelo para actualizar el usuario correspondiente
+        return usuarioService.update(model);
+    }*/
 }
